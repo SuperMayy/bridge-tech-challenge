@@ -1,0 +1,94 @@
+.pill, .total-pill{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 324px;
+    height: 72px;
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 72px;
+    padding: 16px 20px;
+    opacity: 1;
+    margin-bottom: 32px;
+    color: #5F259F;
+  }
+  
+  .pill:hover, .selected {
+    background: #5F259F;
+    color: #FFFFFF;
+  }
+  
+  .estimate{
+    text-align: left;
+    font: normal normal bold 12px/15px Inter;
+    letter-spacing: 0px;
+    color: #C7B3DD;
+    text-transform: uppercase;
+    opacity: 1;
+  }
+  
+  .price-number{
+    text-align: center;
+    font: normal normal normal 12px/15px Inter;
+    letter-spacing: 0px;
+    text-transform: capitalize;
+    opacity: 1;
+  }
+  
+  .pill-title{
+    text-align: center;
+    font: normal normal normal 16px/16px Inter;
+    letter-spacing: 0px;
+    opacity: 1;
+  }
+
+  .pill-title.total {
+    font: normal normal bold 16px/20px Inter;
+    text-transform: uppercase;
+  }
+  
+  .continue-button{
+    background: #DB2F20;
+    border-radius: 20px;
+    border: none;
+    opacity: 1;
+    padding: 10px 12px;
+    display:block;
+    margin: auto;
+    cursor: pointer;
+    width: 124px;
+    font-size: 16px;
+  }
+  
+  .button-content p{
+    text-align: left;
+    font: normal normal normal 16px/20px Inter;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+  }
+  
+  .button-container{
+    height: 72px;
+    padding: 16px 20px;
+    width: 324px;
+  }
+  
+  .button-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .svg-container{
+    margin-left: 5px;
+  }
+
+  .total-number {
+    color: #DB2F20;
+    text-align: center;
+    font: normal normal normal 28px/16px Inter;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+}
