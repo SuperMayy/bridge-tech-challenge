@@ -33,7 +33,7 @@ export const machine = createMachine({
       on: {
         IDENTITY_REQUIRMENTS_SELECTED: { 
           actions: [
-            assign({identityRequirement: (ctx, event) => ctx.event.data })
+            assign({identityRequirement: (ctx) => ctx.event.data })
           ]
         },
         RAISE_ORDER_SELECTED: { 
