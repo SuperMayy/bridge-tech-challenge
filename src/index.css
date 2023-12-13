@@ -10,11 +10,17 @@ body {
 
 :root {
   /* Colors: */ 
+  font-family: Inter, sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
   --purple: #5F259F;
   --purple-50: #9671C0;
   --purple-35: #C7B3DD;
   --red: #DB2F20;
   --white: #FFFFFF;
+}
+
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
 }
 
 body > #root > div {
