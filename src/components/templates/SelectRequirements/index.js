@@ -15,8 +15,24 @@ const SelectRequirements = ({
   payProvider,
   deliverProduct,
   invoiceCheck,
-  placeOrder
+  placeOrder,
+  calculateFirstPageTotal,
+  firstPageTotal
 }) => {
+
+  useEffect(() => {
+    calculateFirstPageTotal()
+  }, [
+    identityRequirement, 
+    requestQuotation, 
+    findProducts, 
+    raiseOrder, 
+    authoriseSale, 
+    payProvider, 
+    deliverProduct, 
+    invoiceCheck, 
+    placeOrder,
+  ])
 
   useEffect(() => {
     gsap.fromTo( ".pill-column",{ x: 100 }, { x: 0 });
@@ -56,15 +72,7 @@ const SelectRequirements = ({
             <p className="pill-title total">TOTAL</p>
             <div className="price">
               <p className="total-number">£
-              {parseFloat(identityRequirement
-                +requestQuotation 
-                + findProducts 
-                + raiseOrder 
-                + authoriseSale 
-                + payProvider 
-                + deliverProduct 
-                + invoiceCheck 
-                + placeOrder).toFixed(2)}
+              {parseFloat(firstPageTotal).toFixed(2)}
               </p>
             </div>
           </div>

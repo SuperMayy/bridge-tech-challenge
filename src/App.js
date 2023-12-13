@@ -21,13 +21,13 @@ function App() {
     deliverProduct, 
     invoiceCheck, 
     placeOrder,
-    questionThree,
-    questionOne,
     suplierAndProduct,
+    quotationToOrderProcess,
     expeditingAndRecivingOrders,
     processingInvoices,
     payingSuppliers,
-    questionTwo 
+    totalProcessCost,
+    firstPageTotal
   } = current.context;
   const next = (value) => send({ type: 'CONTINUE', data: value});
   const back = () => send({ type: 'BACK'});
@@ -35,6 +35,8 @@ function App() {
   const reset = () => send({ type: 'RESET'})
   const setIdentityRequirement = (event, value) => send({type: event, data: value});
   const finishLoading = () => send({ type: 'LOADED'});
+  const calculateFirstPageTotal = () => send({ type: 'FIRST_PAGE_TOTAL'});
+  const calculateResults = () => send({ type: 'CALCULATE_RESULTS'});
 
   return (
     <div className="App">
@@ -51,6 +53,8 @@ function App() {
         deliverProduct={deliverProduct}
         invoiceCheck={invoiceCheck}
         placeOrder={placeOrder}
+        calculateFirstPageTotal={calculateFirstPageTotal}
+        firstPageTotal={firstPageTotal}
         />}
         {current.matches('inputAnnualSpend') && <InputValues 
           question="What is your approximate annual Spend on industrial items?"
@@ -72,22 +76,13 @@ function App() {
         />}
         {current.matches('loading') && <LoadingScreen finishLoading={finishLoading}/>}
         { current.matches('results') && <Results back={back} sendReport={sendReport}
-          placeOrder={placeOrder}
-          questionThree={questionThree}
+          calculateResults={calculateResults}
           suplierAndProduct={suplierAndProduct}
+          quotationToOrderProcess={quotationToOrderProcess}
           expeditingAndRecivingOrders={expeditingAndRecivingOrders}
           processingInvoices={processingInvoices}
           payingSuppliers={payingSuppliers}
-          questionTwo={questionTwo}
-          requestQuotation={requestQuotation}
-          payProvider={payProvider}
-          findProducts={findProducts}
-          raiseOrder={raiseOrder}
-          authoriseSale={authoriseSale}
-          deliverProduct={deliverProduct}
-          questionOne={questionOne}
-          invoiceCheck={invoiceCheck}
-          identityRequirement={identityRequirement}
+          totalProcessCost={totalProcessCost}
         />}
         { current.matches('final') && <Final reset={reset} />}
       </MainLayout>

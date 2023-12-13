@@ -1,58 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './main.css'
 import backPlay from '../../../media/back-play.svg'
 
 const Results = ({
   back, 
   sendReport, 
-  identityRequirement,
-  payProvider,
-  findProducts,
-  raiseOrder,
-  authoriseSale,
-  placeOrder,
-  questionTwo,
-  questionThree,
-  requestQuotation,
-  deliverProduct,
-  questionOne,
-  invoiceCheck,
+  calculateResults,
+  suplierAndProduct,
+  quotationToOrderProcess,
+  expeditingAndRecivingOrders,
+  processingInvoices,
+  payingSuppliers,
+  totalProcessCost,
 }) => {
 
-  const [suplierAndProduct, setSuplierAndProduct] = useState(null);
-  const [quotationToOrderProcess, setQuotationToOrderProcess] = useState(null);
-  const [expeditingAndRecivingOrders, setExpeditingAndRecivingOrders] = useState(null);
-  const [processingInvoices, setProcessingInvoices] = useState(null);
-  const [payingSuppliers, setPayingSuppliers] = useState(null);
-  const [totalProcessCost, setTotalProcessCost] = useState(null)
-
   useEffect(() => {
-    setSuplierAndProduct((identityRequirement + requestQuotation) * questionTwo)
-  }, [identityRequirement, requestQuotation, questionTwo]);
-
-  useEffect(() => {
-    setQuotationToOrderProcess((findProducts + raiseOrder + authoriseSale + payProvider) * questionTwo)
-  }, [findProducts, raiseOrder, authoriseSale, payProvider, questionTwo]);
-
-  useEffect(() => {
-    setExpeditingAndRecivingOrders(deliverProduct * questionOne)
-  }, [deliverProduct, questionOne]);
-
-  useEffect(() => {
-    setProcessingInvoices(invoiceCheck * questionTwo)
-  }, [invoiceCheck, questionTwo]);
-
-  useEffect(() => {
-    setPayingSuppliers(placeOrder * questionThree)
-  }, [placeOrder, questionThree]);
-
-  useEffect(() => {
-    setTotalProcessCost(suplierAndProduct +
-      quotationToOrderProcess +
-      expeditingAndRecivingOrders +
-      processingInvoices +
-      payingSuppliers)
-  }, [suplierAndProduct, quotationToOrderProcess, expeditingAndRecivingOrders, processingInvoices, payingSuppliers]);
+    calculateResults();
+  },[])
 
   return (
     <>
@@ -75,7 +39,7 @@ const Results = ({
             Supplier & product
           </div>
           <div className="right-pill-content">
-            £ {suplierAndProduct}
+            £ {parseFloat(suplierAndProduct).toFixed(2)}
           </div>
         </div>
         <div className="result-pill">
@@ -83,7 +47,7 @@ const Results = ({
             Quotation to order process
           </div>
           <div className="right-pill-content">
-            £ {quotationToOrderProcess}
+            £ {parseFloat(quotationToOrderProcess).toFixed(2)}
           </div>
         </div>
         <div className="result-pill">
@@ -91,7 +55,7 @@ const Results = ({
             Expediting & receiving orders
           </div>
           <div className="right-pill-content">
-            £ {expeditingAndRecivingOrders}
+            £ {parseFloat(expeditingAndRecivingOrders).toFixed(2)}
           </div>
         </div>
         <div className="result-pill">
@@ -99,7 +63,7 @@ const Results = ({
             Processing invoices
           </div>
           <div className="right-pill-content">
-            £ {processingInvoices}
+            £ {parseFloat(processingInvoices).toFixed(2)}
           </div>
         </div>
         <div className="result-pill">
@@ -107,7 +71,7 @@ const Results = ({
             Paying suppliers
           </div>
           <div className="right-pill-content">
-            £ {payingSuppliers}
+            £ {parseFloat(payingSuppliers).toFixed(2)}
           </div>
         </div>
         <div className="result-pill purple-pill">
@@ -115,7 +79,7 @@ const Results = ({
             Total Process Costs (year)
           </div>
           <div className="right-pill-content">
-            £ {totalProcessCost}
+            £ {parseFloat(totalProcessCost).toFixed(2)}
           </div>
         </div>
         <button className='send-button' onClick={sendReport}>

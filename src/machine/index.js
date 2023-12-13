@@ -3,6 +3,7 @@ import { assign, createMachine } from "xstate";
 export const machine = createMachine({
   id: "questionnaire",
   preserveActionOrder: true,
+  predictableActionArguments: true,
   initial: "selectRequirements",
   context: {
     questionOne: null,
@@ -67,6 +68,21 @@ export const machine = createMachine({
           actions: assign({
             placeOrder: (ctx) => ctx.event.data })
         },
+        FIRST_PAGE_TOTAL: {
+          actions: assign({
+            firstPageTotal: (ctx) => {
+            return ctx.context.identityRequirement +
+            ctx.context.requestQuotation +
+            ctx.context.findProducts +
+            ctx.context.raiseOrder +
+            ctx.context.authoriseSale +
+            ctx.context.payProvider +
+            ctx.context.deliverProduct +
+            ctx.context.invoiceCheck +
+            ctx.context.placeOrder;
+          }
+        })
+        },
         CONTINUE: { target: "inputAnnualSpend" },
         ERROR: {
           target: "selectRequirements",
@@ -109,7 +125,27 @@ export const machine = createMachine({
     },
     results: {
       on: {
-        SEND_REPORT: { target: "final"},
+        CALCULATE_RESULTS: {
+          actions: assign({
+            suplierAndProduct: (ctx) => (ctx.context.identityRequirement + ctx.context.requestQuotation) * ctx.context.questionTwo,
+            quotationToOrderProcess: (ctx) => {
+              return (ctx.context.findProducts + ctx.context.raiseOrder + ctx.context.authoriseSale + ctx.context.payProvider) * ctx.context.questionTwo
+            },
+            expeditingAndRecivingOrders: (ctx) => ctx.context.deliverProduct * ctx.context.questionOne,
+            processingInvoices: (ctx) => ctx.context.invoiceCheck * ctx.context.questionTwo,
+            payingSuppliers: (ctx) => ctx.context.placeOrder * ctx.context.questionThree,
+            totalProcessCost: (ctx) => {
+              return ctx.context.suplierAndProduct +
+              ctx.context.quotationToOrderProcess +
+              ctx.context.expeditingAndRecivingOrders +
+              ctx.context.processingInvoices +
+              ctx.context.payingSuppliers;
+            },
+          }),
+        },
+        SEND_REPORT: { 
+          target: "final",
+        },
         BACK: { target: "numberOfIndustrialSuppliers" },
       },
     },
@@ -117,9 +153,7 @@ export const machine = createMachine({
       on: {
         RESET: { 
           target: "selectRequirements",
-          actions: assign({
-            questionThree: () => window.location.reload()
-          }) 
+          actions: () => window.location.reload()
         },
       },
     },
