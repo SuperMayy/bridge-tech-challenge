@@ -4,6 +4,19 @@
   margin: 0;
 }
 
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+:root {
+  /* Colors: */ 
+  --purple: #5F259F;
+  --purple-50: #9671C0;
+  --purple-35: #C7B3DD;
+  --red: #DB2F20;
+  --white: #FFFFFF;
+}
+
 body > #root > div {
   height: 100vh;
 }
