@@ -1,0 +1,27 @@
+.final {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.final h2 {
+    margin-top: 211px;
+    color: var(--red);
+    text-align: center;
+    font: normal normal bold 24px/32px Inter;
+    letter-spacing: 0px;
+    width: 575px;
+}
+
+.restart-button{
+    width: 117px;
+    height: 36px;
+    background: var(--red);
+    border: none;
+    border-radius: 20px;  
+    font: normal normal normal 20px/24px Inter;
+    letter-spacing: 0px;
+    color: var(--white);
+    margin-top: 66px;
+    cursor: pointer;
+  }

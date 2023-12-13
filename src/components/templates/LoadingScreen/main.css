@@ -1,0 +1,46 @@
+.b2x-spinner__circle {
+    stroke-dasharray: 150;
+    animation: 2s ease-in-out 0s infinite normal none running dash;
+    stroke-width: 3;
+    stroke-linecap: round;
+    fill: transparent;
+    stroke: rgb(41, 0, 62);
+}
+
+.b2x-spinner--large{
+  width: 50px;
+  height: 50px
+}
+
+.b2x-spinner {
+    animation: 1s linear 0s infinite normal none running rotate;
+}
+
+.spinner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+@-webkit-keyframes rotate {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 125;
+  }
+  50% {
+    stroke-dashoffset: 62.5;
+  }
+  100% {
+    stroke-dashoffset: 125;
+  }
+}

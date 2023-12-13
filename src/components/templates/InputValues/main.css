@@ -5,6 +5,7 @@
     color: var(--red);
     opacity: 1;
     margin: 0px 43px;
+    width: 525px;
   }
   
   .question-section{

@@ -1,96 +1,83 @@
 import './main.css'
 import React from 'react'
-import Tick from '../../atom/Tick'
+import Pill from '../../compound/pill'
 import play from '../../../media/play.svg'
 
-const SelectRequirements = () => {
+const SelectRequirements = ({ 
+  next, 
+  setIdentityRequirement, 
+  identityRequirement, 
+  requestQuotation, 
+  findProducts,
+  raiseOrder,
+  authoriseSale,
+  payProvider,
+  deliverProduct,
+  invoiceCheck,
+  placeOrder
+}) => {
+
   return (
     <>
         <div className="pill-column">
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Identify requirements</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Request a quotation</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Find products</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
+          <Pill title="Identify requirements" price="6.00" value={6} 
+            event="IDENTITY_REQUIRMENTS_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
+          <Pill title="Raise an order" price="6.00" value={6}
+            event="RAISE_ORDER_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
+          <Pill title="Deliver product" price="4.30" value={4.3}
+            event="DELIVERY_PRODUCT_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
         </div>
         <div className="pill-column">
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Identify requirements</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Request a quotation</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Find products</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
+          <Pill title="Request a quotation" price="3.00" value={3} 
+            event="REQUEST_QUOTATION_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
+          <Pill title="Authorise sale" price="21.55" value={21.55} 
+            event="AUTHORISE_SALE_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
+          <Pill title="Invoice check" price="6.00" value={6} 
+            event="INVOICE_CHECK_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
           <div className="total-pill">
             <p className="pill-title total">TOTAL</p>
             <div className="price">
-              <p className="total-number">£0.00</p>
+              <p className="total-number">£
+              {parseFloat(identityRequirement
+                +requestQuotation 
+                + findProducts 
+                + raiseOrder 
+                + authoriseSale 
+                + payProvider 
+                + deliverProduct 
+                + invoiceCheck 
+                + placeOrder).toFixed(2)}
+              </p>
             </div>
           </div>
         </div>
         <div className="pill-column">
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Identify requirements</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Request a quotation</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
-          <div className="pill">
-            <Tick />
-            <p className="pill-title">Find products</p>
-            <div className="price">
-              <p className="estimate">ESTIMATE</p>
-              <p className="price-number">£6.00</p>
-            </div>
-          </div>
+          <Pill title="Find products" price="16.00" value={16} 
+            event="FIND_PRODUCTS_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
+          <Pill title="Pay provider" price="13.00" value={13} 
+            event="PAY_PROVIDER_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
+          <Pill title="Place order" price="6.50" value={6.5} 
+            event="PLACE_ORDER_SELECTED"
+            action={(event, value) => setIdentityRequirement(event, value)}
+          />
           <div className="button-container">
-            <button className="continue-button">
+            <button className="continue-button" onClick={next}>
               <div className="button-content"> 
                 <p>Continue</p>
                 <img src={play} alt="play icon" className="svg-container" />

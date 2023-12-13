@@ -1,8 +1,59 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './main.css'
-import play from '../../../media/play.svg'
+import backPlay from '../../../media/back-play.svg'
 
-const Results = () => {
+const Results = ({
+  back, 
+  sendReport, 
+  identityRequirement,
+  payProvider,
+  findProducts,
+  raiseOrder,
+  authoriseSale,
+  placeOrder,
+  questionTwo,
+  questionThree,
+  requestQuotation,
+  deliverProduct,
+  questionOne,
+  invoiceCheck,
+}) => {
+
+  const [suplierAndProduct, setSuplierAndProduct] = useState(null);
+  const [quotationToOrderProcess, setQuotationToOrderProcess] = useState(null);
+  const [expeditingAndRecivingOrders, setExpeditingAndRecivingOrders] = useState(null);
+  const [processingInvoices, setProcessingInvoices] = useState(null);
+  const [payingSuppliers, setPayingSuppliers] = useState(null);
+  const [totalProcessCost, setTotalProcessCost] = useState(null)
+
+  useEffect(() => {
+    setSuplierAndProduct((identityRequirement + requestQuotation) * questionTwo)
+  }, [identityRequirement, requestQuotation, questionTwo]);
+
+  useEffect(() => {
+    setQuotationToOrderProcess((findProducts + raiseOrder + authoriseSale + payProvider) * questionTwo)
+  }, [findProducts, raiseOrder, authoriseSale, payProvider, questionTwo]);
+
+  useEffect(() => {
+    setExpeditingAndRecivingOrders(deliverProduct * questionOne)
+  }, [deliverProduct, questionOne]);
+
+  useEffect(() => {
+    setProcessingInvoices(invoiceCheck * questionTwo)
+  }, [invoiceCheck, questionTwo]);
+
+  useEffect(() => {
+    setPayingSuppliers(placeOrder * questionThree)
+  }, [placeOrder, questionThree]);
+
+  useEffect(() => {
+    setTotalProcessCost(suplierAndProduct +
+      quotationToOrderProcess +
+      expeditingAndRecivingOrders +
+      processingInvoices +
+      payingSuppliers)
+  }, [suplierAndProduct, quotationToOrderProcess, expeditingAndRecivingOrders, processingInvoices, payingSuppliers]);
+
   return (
     <>
       <div className="left-content">
@@ -11,10 +62,10 @@ const Results = () => {
         <p>
           Based on what you have told us about your process we can estimate that the following costs are being insured within your procurement processes.
         </p>
-        <button className="continue-button">
+        <button className="continue-button" onClick={back}>
           <div className="button-content"> 
+            <img src={backPlay} alt="back icon" className="back-svg-container" />
             <p>Go Back</p>
-            <img src={play} alt="play icon" className="svg-container" />
           </div>
         </button>
       </div>
@@ -24,7 +75,7 @@ const Results = () => {
             Supplier & product
           </div>
           <div className="right-pill-content">
-            £ 89,600.00
+            £ {(identityRequirement + requestQuotation) * questionTwo}
           </div>
         </div>
         <div className="result-pill">
@@ -32,7 +83,7 @@ const Results = () => {
             Quotation to order process
           </div>
           <div className="right-pill-content">
-            £ 89,600.00
+            £ {(findProducts + raiseOrder + authoriseSale + payProvider) * questionTwo}
           </div>
         </div>
         <div className="result-pill">
@@ -40,7 +91,7 @@ const Results = () => {
             Expediting & receiving orders
           </div>
           <div className="right-pill-content">
-            £ 89,600.00
+            £ {deliverProduct * questionOne}
           </div>
         </div>
         <div className="result-pill">
@@ -48,7 +99,7 @@ const Results = () => {
             Processing invoices
           </div>
           <div className="right-pill-content">
-            £ 89,600.00
+            £ {invoiceCheck * questionTwo}
           </div>
         </div>
         <div className="result-pill">
@@ -56,7 +107,7 @@ const Results = () => {
             Paying suppliers
           </div>
           <div className="right-pill-content">
-            £ 89,600.00
+            £ {placeOrder * questionThree}
           </div>
         </div>
         <div className="result-pill purple-pill">
@@ -64,10 +115,10 @@ const Results = () => {
             Total Process Costs (year)
           </div>
           <div className="right-pill-content">
-            £ 89,600.00
+            £ {totalProcessCost}
           </div>
         </div>
-        <button className='send-button'>
+        <button className='send-button' onClick={sendReport}>
           Send me this report
         </button>
       </div>

@@ -75,8 +75,8 @@
     align-items: center;
   }
   
-  .svg-container{
-    margin-left: 5px;
+  .back-svg-container{
+    margin-right: 5px;
   }
 
   .send-button{
@@ -89,6 +89,7 @@
     letter-spacing: 0px;
     color: var(--white);
     margin-top: 32px;
+    cursor: pointer;
   }
 
   .purple-pill .left-pill-content {

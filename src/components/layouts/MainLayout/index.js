@@ -1,11 +1,11 @@
 import './main.css';
 import React from 'react'
 
-const MainLayout = ({ children }) => {
+const MainLayout = ({ children, isResultPage }) => {
   return (
     <div className="layout">
       <div className="top-section">
-        <h1>Coding test for Bridge SEA</h1>
+        <h1>CALCULATING YOUR TOTAL COSTS {isResultPage && "- YOUR RESULT"}</h1>
       </div>
       <div className="main-content">
         {children}
