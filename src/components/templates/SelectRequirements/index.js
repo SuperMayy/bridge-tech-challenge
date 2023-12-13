@@ -1,5 +1,6 @@
 import './main.css'
-import React from 'react'
+import React, { useEffect } from 'react'
+import { gsap } from 'gsap/gsap-core'
 import Pill from '../../compound/pill'
 import play from '../../../media/play.svg'
 
@@ -16,6 +17,11 @@ const SelectRequirements = ({
   invoiceCheck,
   placeOrder
 }) => {
+
+  useEffect(() => {
+    gsap.fromTo( ".pill-column",{ x: 100 }, { x: 0 });
+    gsap.fromTo( ".continue-button",{duration: 2, backgroundColor: '#5F259F', }, { duration: 2, backgroundColor: '#DB2F20' });
+  }, []);
 
   return (
     <>

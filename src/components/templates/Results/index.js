@@ -75,7 +75,7 @@ const Results = ({
             Supplier & product
           </div>
           <div className="right-pill-content">
-            £ {(identityRequirement + requestQuotation) * questionTwo}
+            £ {suplierAndProduct}
           </div>
         </div>
         <div className="result-pill">
@@ -83,7 +83,7 @@ const Results = ({
             Quotation to order process
           </div>
           <div className="right-pill-content">
-            £ {(findProducts + raiseOrder + authoriseSale + payProvider) * questionTwo}
+            £ {quotationToOrderProcess}
           </div>
         </div>
         <div className="result-pill">
@@ -91,7 +91,7 @@ const Results = ({
             Expediting & receiving orders
           </div>
           <div className="right-pill-content">
-            £ {deliverProduct * questionOne}
+            £ {expeditingAndRecivingOrders}
           </div>
         </div>
         <div className="result-pill">
@@ -99,7 +99,7 @@ const Results = ({
             Processing invoices
           </div>
           <div className="right-pill-content">
-            £ {invoiceCheck * questionTwo}
+            £ {processingInvoices}
           </div>
         </div>
         <div className="result-pill">
@@ -107,7 +107,7 @@ const Results = ({
             Paying suppliers
           </div>
           <div className="right-pill-content">
-            £ {placeOrder * questionThree}
+            £ {payingSuppliers}
           </div>
         </div>
         <div className="result-pill purple-pill">
